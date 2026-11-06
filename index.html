@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accomplishment Gallery</title>
+<meta name="description" content="Accomplishment Gallery, presented by the Municipal Government of Surallah.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wall:#10302E; --stone:#F2F1ED; --brass:#B8862F; --plaster:#D9D6CC;
+  --ink:#16201F; --muted:#4B5755; --chalk:#FFFFFF;
+  --serif:"Bodoni Moda",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans",system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--sans);font-size:1.0625rem;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+
+/* Home */
+.intro{padding:72px 0 40px}
+.intro h1{margin:0;font-family:var(--serif);font-weight:500;color:var(--wall);font-size:clamp(2.9rem,10vw,6.25rem);line-height:.98;letter-spacing:-.025em;max-width:11ch}
+.intro .rule{width:72px;height:2px;background:var(--brass);margin:32px 0 20px}
+.intro p{margin:0;color:var(--muted);max-width:40ch}
+.notice{margin:0 0 24px;padding:12px 0 12px 16px;border-left:3px solid var(--brass);color:var(--muted);font-size:.9375rem}
+.index{list-style:none;margin:0 0 72px;padding:0;border-bottom:1px solid var(--plaster);display:grid;grid-template-columns:1fr;column-gap:56px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 4px;border-top:1px solid var(--plaster);text-decoration:none;font-family:var(--serif);font-size:1.5rem;line-height:1.2;color:var(--wall);transition:background-color .2s,color .2s,padding .2s}
+.row svg{flex:none;width:28px;height:14px;stroke:var(--brass);fill:none;stroke-width:1.5}
+.row:hover,.row:focus-visible,.row:active{background:var(--wall);color:var(--chalk);padding-left:18px;padding-right:18px}
+
+/* Detail */
+.wall{background:var(--wall);padding:22px 0 56px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.back{display:inline-flex;align-items:center;gap:10px;color:var(--chalk);text-decoration:none;font-weight:500;font-size:.9375rem;padding:6px 0}
+.back svg{width:28px;height:14px;stroke:var(--brass);fill:none;stroke-width:1.5}
+.back:hover span{text-decoration:underline;text-underline-offset:4px}
+.sec{margin:0;color:var(--chalk);font-weight:500;font-size:.9375rem;opacity:.85}
+.frame{display:flex;justify-content:center;margin:36px 0 0}
+.mat{background:var(--chalk);padding:12px;max-width:100%;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.mat img{display:block;max-width:100%;max-height:72vh;width:auto;height:auto}
+.mat .msg{margin:0;padding:48px 24px;color:var(--ink);text-align:center;max-width:36ch}
+.label{max-width:700px;margin:0 auto;padding:48px 24px 80px}
+.label .rule{width:56px;height:2px;background:var(--brass);margin:0 0 24px}
+.label h1{margin:0 0 28px;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(2rem,6.5vw,3.25rem);line-height:1.1;letter-spacing:-.015em;color:var(--wall)}
+.caption{max-width:62ch}
+.caption p{margin:0 0 1.1em;line-height:1.75}
+.by{max-width:62ch;margin:36px 0 0;padding-top:16px;border-top:1px solid var(--plaster);font-size:.9375rem;color:var(--muted)}
+.by strong{color:var(--ink);font-weight:600}
+.status{padding:56px 0;text-align:center}
+.btn{display:inline-block;margin-top:14px;padding:11px 22px;background:var(--wall);color:var(--chalk);border:0;font:inherit;font-weight:500;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--brass)}
+
+footer{border-top:1px solid var(--plaster);padding:24px 0;font-size:.875rem;color:var(--muted)}
+footer .wrap{display:flex;align-items:center;gap:12px}
+footer img{width:36px;height:36px;border-radius:50%;background:var(--chalk)}
+
+@media (min-width:760px){
+  .index{grid-template-columns:1fr 1fr}
+  .mat{padding:22px}
+  .intro{padding:104px 0 56px}
+  .row{font-size:1.75rem;padding:24px 4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<footer><div class="wrap"><img src="logo.png" alt="" width="36" height="36"><span>Presented by the Municipal Government of Surallah</span></div></footer>
+
+<script>
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRTReCqfe-QQMDlR4wluzCeMGPAcU1OiQO_6zb1oUYNT9XgvdYUAQG2N3KG9p_DVrBPxGGSZDDjUqbq/pub?gid=0&single=true&output=csv";
+const SECTIONS = ["Economic","Tourism","Infrastructure","Social Sector","Legislative","Health and Nutrition","Agriculture","Indigenous People","Sports","Education","Security","Employment","Environment","Civil Registration"];
+const CACHE_KEY = "surallah-gallery-csv";
+const app = document.getElementById("app");
+let entries = [], status = "loading";
+
+const slugify = s => s.toLowerCase().replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+
+function parseCSV(text){
+  const out=[]; let row=[], f="", q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){ if(c==='"'){ if(text[i+1]==='"'){f+='"';i++;} else q=false; } else f+=c; }
+    else if(c==='"') q=true;
+    else if(c===","){ row.push(f); f=""; }
+    else if(c==="\n"||c==="\r"){ if(c==="\r"&&text[i+1]==="\n") i++; row.push(f); out.push(row); row=[]; f=""; }
+    else f+=c;
+  }
+  if(f!==""||row.length){ row.push(f); out.push(row); }
+  return out;
+}
+function toEntries(text){
+  const rows=parseCSV(text); if(!rows.length) return [];
+  const head=rows[0].map(h=>h.trim().toLowerCase());
+  const col=n=>head.findIndex(h=>h.includes(n));
+  const ix={section:col("section"),by:col("photographer"),title:col("title"),caption:col("caption"),image:col("image")};
+  const get=(r,i)=>i>=0&&r[i]?r[i].trim():"";
+  return rows.slice(1).map(r=>({section:get(r,ix.section),photographer:get(r,ix.by),title:get(r,ix.title),caption:get(r,ix.caption),image:get(r,ix.image)}))
+    .filter(e=>e.section).map(e=>({...e,slug:slugify(e.section)}));
+}
+function imageSources(url){
+  if(!url) return [];
+  if(/drive\.google\.com|docs\.google\.com/.test(url)){
+    const m=url.match(/\/file\/d\/([\w-]+)/)||url.match(/[?&]id=([\w-]+)/)||url.match(/\/d\/([\w-]+)/);
+    if(!m) return [];
+    const id=m[1];
+    return [`https://drive.google.com/thumbnail?id=${id}&sz=w1600`,`https://lh3.googleusercontent.com/d/${id}=w1600`,`https://drive.google.com/uc?export=view&id=${id}`];
+  }
+  return [url];
+}
+function h(tag,attrs={},...kids){
+  const n=document.createElement(tag);
+  for(const k in attrs){ if(k==="class") n.className=attrs[k]; else if(k==="html") n.innerHTML=attrs[k]; else n.setAttribute(k,attrs[k]); }
+  kids.flat().forEach(k=>n.append(k));
+  return n;
+}
+const arrR='<svg viewBox="0 0 28 14" aria-hidden="true"><path d="M0 7h26M20 1l6 6-6 6"/></svg>';
+const arrL='<svg viewBox="0 0 28 14" aria-hidden="true"><path d="M28 7H2M8 1L2 7l6 6"/></svg>';
+const SOON="The photograph and caption for this section will be posted soon.";
+const NOIMG="The photograph could not be loaded right now. Please try again shortly.";
+
+function homeView(){
+  const names = entries.length ? entries.map(e=>e.section) : SECTIONS;
+  document.title="Accomplishment Gallery";
+  return [
+    h("header",{class:"wrap intro"}, h("h1",{tabindex:"-1"},"Accomplishment Gallery"), h("div",{class:"rule"}), h("p",{},"Select a section to view its photograph and caption.")),
+    h("main",{class:"wrap"},
+      status==="error" ? h("p",{class:"notice"},"Photographs and captions could not be loaded. Please check your connection and refresh the page.") : "",
+      h("nav",{"aria-label":"Sections"}, h("ul",{class:"index"}, names.map(n=>h("li",{}, h("a",{class:"row",href:"#"+slugify(n)}, h("span",{},n), h("span",{html:arrR}) ))))))
+  ];
+}
+
+function detailView(slug){
+  const e = entries.find(x=>x.slug===slug);
+  const name = e ? e.section : (SECTIONS.find(s=>slugify(s)===slug)||"");
+  const inner = h("div",{class:"wrap"}, h("div",{class:"nav"},
+    h("a",{class:"back",href:"#"}, h("span",{html:arrL}), h("span",{},"All sections")),
+    h("p",{class:"sec"},name||"Section")));
+  const wall = h("header",{class:"wall"},inner);
+  const main = h("main",{class:"label"});
+  const note = (msg,btn)=>main.append(h("div",{class:"status"},h("p",{},msg),btn||""));
+  const back = h("a",{class:"btn",href:"#"},"Back to all sections");
+
+  if(status==="loading" && !e) note("Loading…");
+  else if(!name) note("We could not find that section.",back);
+  else if(!e) note("This section could not be loaded right now.",h("button",{class:"btn",onclick:"location.reload()"},"Try again"));
+  else if(!e.title && !e.caption && !e.image) note(SOON,back);
+  else{
+    if(e.image){
+      const mat=h("div",{class:"mat"}), srcs=imageSources(e.image);
+      const fail=()=>mat.replaceChildren(h("p",{class:"msg"},NOIMG));
+      if(srcs.length){
+        let i=0;
+        const img=h("img",{alt:e.title||name+" photograph",src:srcs[0],decoding:"async"});
+        img.onerror=()=>{ i++; if(i<srcs.length) img.src=srcs[i]; else fail(); };
+        mat.append(img);
+      } else fail();
+      inner.append(h("figure",{class:"frame",style:"margin-bottom:0;margin-inline:0"},mat));
+    }
+    main.append(h("div",{class:"rule"}));
+    if(e.title) main.append(h("h1",{tabindex:"-1"},e.title));
+    if(e.caption) main.append(h("div",{class:"caption"}, e.caption.split(/\n+/).filter(p=>p.trim()).map(p=>h("p",{},p.trim()))));
+    if(e.photographer) main.append(h("p",{class:"by"},"Photo and caption by ",h("strong",{},e.photographer)));
+  }
+  document.title=(e&&e.title?e.title+" | ":name?name+" | ":"")+"Accomplishment Gallery";
+  return [wall,main];
+}
+
+function render(scroll){
+  const slug=decodeURIComponent(location.hash.replace(/^#/,""));
+  app.replaceChildren(...(slug?detailView(slug):homeView()));
+  if(scroll){ window.scrollTo(0,0); const t=app.querySelector("h1"); if(t) t.focus({preventScroll:true}); }
+}
+
+async function load(){
+  try{
+    const res=await fetch(SHEET_CSV_URL+(SHEET_CSV_URL.includes("?")?"&":"?")+"t="+Date.now(),{cache:"no-store"});
+    if(!res.ok) throw new Error(res.status);
+    const text=await res.text();
+    entries=toEntries(text); status="ready";
+    try{ localStorage.setItem(CACHE_KEY,text); }catch(_){}
+  }catch(err){
+    let c=null; try{ c=localStorage.getItem(CACHE_KEY); }catch(_){}
+    if(c){ entries=toEntries(c); status="ready"; } else status="error";
+  }
+  render(false);
+}
+window.addEventListener("hashchange",()=>render(true));
+render(false);
+load();
+</script>
+</body>
+</html>
