@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Accomplishment Gallery</title>
-<meta name="description" content="Accomplishment Gallery, presented by the Municipal Government of Surallah.">
+<title>Celebration of Continuance</title>
+<meta name="description" content="Celebration of Continuance, presented by the Municipal Government of Surallah.">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,9 +127,9 @@ const NOIMG="The photograph could not be loaded right now. Please try again shor
 
 function homeView(){
   const names = entries.length ? entries.map(e=>e.section) : SECTIONS;
-  document.title="Accomplishment Gallery";
+  document.title="Celebration of Continuance";
   return [
-    h("header",{class:"wrap intro"}, h("h1",{tabindex:"-1"},"Accomplishment Gallery"), h("div",{class:"rule"}), h("p",{},"Select a section to view its photograph and caption.")),
+    h("header",{class:"wrap intro"}, h("h1",{tabindex:"-1"},"Celebration of Continuance"), h("div",{class:"rule"}), h("p",{},"Select a section to view its photograph and caption.")),
     h("main",{class:"wrap"},
       status==="error" ? h("p",{class:"notice"},"Photographs and captions could not be loaded. Please check your connection and refresh the page.") : "",
       h("nav",{"aria-label":"Sections"}, h("ul",{class:"index"}, names.map(n=>h("li",{}, h("a",{class:"row",href:"#"+slugify(n)}, h("span",{},n), h("span",{html:arrR}) ))))))
@@ -168,7 +168,7 @@ function detailView(slug){
     if(e.caption) main.append(h("div",{class:"caption"}, e.caption.split(/\n+/).filter(p=>p.trim()).map(p=>h("p",{},p.trim()))));
     if(e.photographer) main.append(h("p",{class:"by"},"Photo and caption by ",h("strong",{},e.photographer)));
   }
-  document.title=(e&&e.title?e.title+" | ":name?name+" | ":"")+"Accomplishment Gallery";
+  document.title=(e&&e.title?e.title+" | ":name?name+" | ":"")+"Celebration of Continuance";
   return [wall,main];
 }
 
